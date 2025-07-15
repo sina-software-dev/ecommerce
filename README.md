@@ -39,13 +39,11 @@ A simple, scalable e-commerce backend application built with **Java 21** and **S
 | Framework     | Spring Boot 3.x         |
 | Security      | Spring Security, JWT    |
 | ORM           | Spring Data JPA         |
-| Database      | PostgreSQL or MySQL     |
+| Database      | H2                      |
 | API Docs      | Swagger/OpenAPI         |
 | Testing       | JUnit 5, Mockito        |
-| Build Tool    | Maven                   |
+| Build Tool    | Gradle                  |
 | Container     | Docker                  |
 | Dev Tools     | Spring DevTools, Lombok |
 
 ---
-
-## 📂 Project Structure (Monolith)
