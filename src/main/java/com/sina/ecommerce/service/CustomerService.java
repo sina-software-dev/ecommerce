@@ -25,8 +25,8 @@ public class CustomerService {
         return customerRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    public void updateCustomer(Customer customer) {
-        customerRepository.save(customer);
+    public Customer updateCustomer(Customer customer) {
+        return customerRepository.save(customer);
     }
 
     public void deleteCustomer(Long id) {
