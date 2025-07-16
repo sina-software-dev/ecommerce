@@ -47,3 +47,17 @@ A simple, scalable e-commerce backend application built with **Java 21** and **S
 | Dev Tools     | Spring DevTools, Lombok |
 
 ---
+
+## 🧪 Postman Collection
+
+You can find a Postman collection for testing the API in the [`postman/`](./postman) directory at the root of the project.
+
+### 📥 How to Use:
+1. Open Postman.
+2. Import the collection file from `postman/ecommerce.postman_collection.json`.
+3. Make sure your local server is running (e.g., `http://localhost:8080`).
+4. Use the requests included in the collection to test available endpoints.
+
+This is helpful for quickly exploring and validating the API without writing manual curl requests.
+
+ ---
