@@ -1,12 +1,11 @@
 package com.sina.ecommerce.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+
+import java.util.List;
 
 /**
  * @author Sina Ramezani, 7/16/2025
@@ -24,6 +23,7 @@ public abstract class User extends AbstractEntity {
     private String password;
     private String email;
     private String phoneNumber;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Address> addresses;
 }
-
-
