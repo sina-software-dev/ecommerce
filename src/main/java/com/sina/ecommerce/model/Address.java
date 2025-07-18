@@ -19,6 +19,4 @@ public class Address extends AbstractEntity{
     private String houseNumberPlate;
     private String postalCode;
     private String wholeAddress;
-    @OneToOne(mappedBy = "address")
-    private Order order;
 }
