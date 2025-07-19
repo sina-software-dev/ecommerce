@@ -31,6 +31,19 @@ A simple, scalable e-commerce backend application built with **Java 21** and **S
 
 ---
 
+## 🧱 Architecture
+
+![Layered Architecture](docs/diagram/diagram-model-classes.png)
+
+The project follows a **Layered Architecture** pattern with clear separation of concerns:
+
+- **Controller Layer**: Handles HTTP requests and maps them to services.
+- **Service Layer**: Contains business logic and orchestrates operations.
+- **Repository Layer**: Handles data persistence via Spring Data JPA.
+- **Domain Layer**: Contains core entities and business rules.
+
+---
+
 ## 🧰 Tech Stack
 
 | Layer         | Technology              |
@@ -50,7 +63,7 @@ A simple, scalable e-commerce backend application built with **Java 21** and **S
 
 ## 🧪 Postman Collection
 
-You can find a Postman collection for testing the API in the [`postman/`](./postman) directory at the root of the project.
+You can find a Postman collection for testing the API in the [`postman/`](docs/postman) directory at the root of the project.
 
 ### 📥 How to Use:
 1. Open Postman.
@@ -59,5 +72,3 @@ You can find a Postman collection for testing the API in the [`postman/`](./post
 4. Use the requests included in the collection to test available endpoints.
 
 This is helpful for quickly exploring and validating the API without writing manual curl requests.
-
- ---
