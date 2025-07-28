@@ -3,7 +3,6 @@ package com.sina.ecommerce.model;
 import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.aspectj.lang.annotation.DeclareParents;
 
 /**
  * @author Sina Ramezani, 7/17/2025

@@ -1,10 +1,16 @@
 package com.sina.ecommerce.controller;
 
+import com.sina.ecommerce.dto.CreateCustomerRequestDto;
+import com.sina.ecommerce.dto.CreateCustomerResponseDto;
+import com.sina.ecommerce.dto.GeneralResponse;
 import com.sina.ecommerce.model.Customer;
 import com.sina.ecommerce.service.CustomerService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -12,29 +18,34 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/customers")
+@Slf4j
 @Validated
 public class CustomerController {
-
-    private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
-
     private final CustomerService customerService;
 
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<Customer> getCustomer(@PathVariable Long id) {
-        logger.info("Fetching customer with id: {}", id);
-        Customer customer = customerService.getCustomerById(id);
-        return ResponseEntity.ok(customer);
+    @Operation(summary = "Create a new customer", description = "Creates a new customer with username")
+    @PostMapping
+    public ResponseEntity<GeneralResponse<CreateCustomerResponseDto>> postCustomer(
+            @Valid @RequestBody CreateCustomerRequestDto createCustomerRequestDto) {
+        log.info("Creating new customer");
+        return ResponseEntity.status(HttpStatus.CREATED).body(new GeneralResponse<>(
+                true,
+                "",
+                customerService.createCustomer(
+                        createCustomerRequestDto
+                ),
+                null));
     }
 
-    @PostMapping
-    public ResponseEntity<Customer> postCustomer(@Valid @RequestBody Customer customer) {
-        logger.info("Creating new customer");
-        Customer createdCustomer = customerService.createCustomer(customer);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
+    /*@GetMapping("{id}")
+    public ResponseEntity<Customer> getCustomer(@PathVariable Long id) {
+        log.info("Fetching customer with id: {}", id);
+        Customer customer = customerService.getCustomerById(id);
+        return ResponseEntity.ok(customer);
     }
 
     @PutMapping("{id}")
@@ -50,6 +61,6 @@ public class CustomerController {
         logger.info("Deleting customer with id: {}", id);
         customerService.deleteCustomer(id);
         return ResponseEntity.noContent().build(); // 204 No Content
-    }
+    }*/
 }
 

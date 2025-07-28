@@ -1,6 +1,6 @@
 package com.sina.ecommerce.exception;
 
-import com.sina.ecommerce.dto.ApiResponse;
+import com.sina.ecommerce.dto.GeneralResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<ApiResponse<?>> handleAllExceptions(Exception ex, WebRequest request) {
-        return ResponseEntity.badRequest().body(new ApiResponse<>(false, ex.getMessage(), null, null));
+    public final ResponseEntity<GeneralResponse<?>> handleAllExceptions(Exception ex, WebRequest request) {
+        return ResponseEntity.badRequest().body(new GeneralResponse<>(false, ex.getMessage(), null, null));
     }
 }

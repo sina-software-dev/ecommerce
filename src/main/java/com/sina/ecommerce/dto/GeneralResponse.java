@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ApiResponse<T> {
+public class GeneralResponse<T> {
         private boolean success;
         private String message;
         private T data;
