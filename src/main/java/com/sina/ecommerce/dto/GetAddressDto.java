@@ -1,19 +1,21 @@
 package com.sina.ecommerce.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+import java.time.LocalDateTime;
+
 /**
- * @author Sina Ramezani, 7/21/2025
+ * @author Sina Ramezani, 7/28/2025
  */
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateAddressResponseDto {
+public class GetAddressDto {
     private Long id;
     private String country;
     private String city;

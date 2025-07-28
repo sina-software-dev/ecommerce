@@ -2,6 +2,7 @@ package com.sina.ecommerce.service;
 
 import com.sina.ecommerce.dto.CreateCustomerRequestDto;
 import com.sina.ecommerce.dto.CreateCustomerResponseDto;
+import com.sina.ecommerce.dto.GetCustomerByIdDto;
 import com.sina.ecommerce.mapper.CustomerMapper;
 import com.sina.ecommerce.model.Customer;
 import com.sina.ecommerce.repository.CustomerRepository;
@@ -41,14 +42,15 @@ public class CustomerService {
         );
     }
 
-    public Customer getCustomerById(Long id) {
-        return customerRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+    public GetCustomerByIdDto getCustomerById(Long id) {
+        return customerMapper.toGetCustomerByIdDto(
+                customerRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found")));
     }
 
     public Customer updateCustomer(Customer customer) {
         Optional<Customer> customerOptional = customerRepository.findById(customer.getId());
         Customer updatedCustomer;
-        if(customerOptional.isPresent())
+        if (customerOptional.isPresent())
             updatedCustomer = customerRepository.save(customer);
         else
             throw new RuntimeException("User not found");
