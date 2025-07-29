@@ -3,6 +3,11 @@ server:
     context-path: /api/v1
   port: 8080
 spring:
+  profiles:
+    active: dev
+  output:
+    ansi:
+      enabled: ALWAYS
   application:
     name: ecommerce
   datasource:
@@ -16,12 +21,12 @@ spring:
       path: /h2-console
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: create-drop
+    show-sql: false
     properties:
       hibernate:
-        format_sql: true
-        use_sql_comments: true
+        format_sql: false
+        use_sql_comments: false
     open-in-view: false
   jackson:
     default-property-inclusion: NON_NULL
@@ -32,4 +37,5 @@ springdoc:
     path: /swagger-ui.html
 logging:
   level:
-    org.springframework.boot.context.config: DEBUG
+    root: INFO
+    com.sina.ecommerce: DEBUG

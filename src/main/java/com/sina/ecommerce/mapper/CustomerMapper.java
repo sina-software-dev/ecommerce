@@ -1,8 +1,6 @@
 package com.sina.ecommerce.mapper;
 
-import com.sina.ecommerce.dto.CreateCustomerRequestDto;
-import com.sina.ecommerce.dto.CreateCustomerResponseDto;
-import com.sina.ecommerce.dto.GetCustomerByIdDto;
+import com.sina.ecommerce.dto.*;
 import com.sina.ecommerce.model.Customer;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -13,8 +11,9 @@ import org.mapstruct.ReportingPolicy;
  */
 @Mapper(componentModel = "spring",unmappedTargetPolicy = ReportingPolicy.WARN)
 public interface CustomerMapper {
-    @Mapping(source = "email", target = "email")
     Customer toEntity(CreateCustomerRequestDto createCustomerRequestDto);
     CreateCustomerResponseDto toCreateCustomerDto(Customer customer);
     GetCustomerByIdDto toGetCustomerByIdDto(Customer customer);
+    Customer toEntity(UpdateCustomerRequestDto updateCustomerRequestDto);
+    UpdateCustomerResponseDto toUpdateCustomerResponseDto(Customer customer);
 }
