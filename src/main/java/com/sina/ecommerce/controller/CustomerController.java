@@ -35,28 +35,5 @@ public class CustomerController {
                 .toUri();
         return ResponseEntity.created(location).body(new GeneralResponse<>(true,savedCustomer));
     }
-
-    /*@GetMapping("{id}")
-    public ResponseEntity<GeneralResponse<GetCustomerByIdDto>> getCustomer(@PathVariable Long id) {
-        log.info("Fetching customer with id: {}", id);
-        return ResponseEntity.ok(
-                new GeneralResponse<>(true, null,customerService.getCustomerById(id),null));
-    }*/
-
-    /*@PutMapping("{id}")
-    public ResponseEntity<GeneralResponse<UpdateCustomerResponseDto>> updateCustomer(@PathVariable Long id, @Valid @RequestBody UpdateCustomerRequestDto updateCustomerRequestDto) {
-        log.info("Updating customer with id: {}", id);
-        updateCustomerRequestDto.setId(id);
-        return ResponseEntity.ok(new GeneralResponse<>(true, customerService.updateCustomer(updateCustomerRequestDto)));
-    }*/
-
-    /*
-
-    @DeleteMapping("{id}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
-        log.info("Deleting customer with id: {}", id);
-        customerService.deleteCustomer(id);
-        return ResponseEntity.noContent().build(); // 204 No Content
-    }*/
 }
 

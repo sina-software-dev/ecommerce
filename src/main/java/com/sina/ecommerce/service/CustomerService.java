@@ -27,24 +27,4 @@ public class CustomerService {
         Customer savedCustomer = customerRepository.save(entity);
         return customerMapper.toCreateCustomerDto(savedCustomer);
     }
-
-    public GetCustomerByIdDto getCustomerById(Long id) {
-        return customerMapper.toGetCustomerByIdDto(
-                customerRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found")));
-    }
-
-    /*@Transactional
-    public UpdateCustomerResponseDto updateCustomer(UpdateCustomerRequestDto updateCustomerRequestDto) {
-        if (customerRepository.findById(updateCustomerRequestDto.getId()).isPresent()) {
-            return customerMapper.toUpdateCustomerResponseDto(
-                    customerRepository.save(
-                            customerMapper.toEntity(
-                                    updateCustomerRequestDto
-                            )
-                    )
-            );
-        } else {
-            throw new RuntimeException("Customer not found");
-        }
-    }*/
 }
