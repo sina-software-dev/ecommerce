@@ -1,16 +1,12 @@
 package com.sina.ecommerce.exception;
 
 import com.sina.ecommerce.dto.GeneralResponse;
-import com.sina.ecommerce.exception.custome.CustomerAlreadyExistsException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -23,7 +19,7 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(CustomerAlreadyExistsException.class)
+    @ExceptionHandler(Exception.class)
     public final ResponseEntity<GeneralResponse<?>> handleAllExceptions(Exception ex, WebRequest request) {
         return ResponseEntity.badRequest().body(new GeneralResponse<>(false, ex.getMessage()));
     }

@@ -23,7 +23,7 @@ public abstract class User extends AbstractEntity {
     private String password;
     private String email;
     private String phoneNumber;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private List<Address> addresses;
 }

@@ -3,17 +3,22 @@ package com.sina.ecommerce.mapper;
 import com.sina.ecommerce.dto.*;
 import com.sina.ecommerce.model.Customer;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 /**
  * @author Sina Ramezani, 7/19/2025
  */
-@Mapper(componentModel = "spring",unmappedTargetPolicy = ReportingPolicy.WARN)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.WARN)
 public interface CustomerMapper {
     Customer toEntity(CreateCustomerRequestDto createCustomerRequestDto);
+
     CreateCustomerResponseDto toCreateCustomerDto(Customer customer);
+
     GetCustomerByIdDto toGetCustomerByIdDto(Customer customer);
+
     Customer toEntity(UpdateCustomerRequestDto updateCustomerRequestDto);
+
     UpdateCustomerResponseDto toUpdateCustomerResponseDto(Customer customer);
+
+    FindByIdDto toFindByIdDto(Customer customer);
 }

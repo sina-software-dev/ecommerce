@@ -1,12 +1,13 @@
 package com.sina.ecommerce.service;
 
-import com.sina.ecommerce.dto.*;
-import com.sina.ecommerce.exception.custome.CustomerAlreadyExistsException;
+import com.sina.ecommerce.dto.CreateCustomerRequestDto;
+import com.sina.ecommerce.dto.CreateCustomerResponseDto;
 import com.sina.ecommerce.mapper.CustomerMapper;
 import com.sina.ecommerce.model.Customer;
 import com.sina.ecommerce.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.logstash.logback.argument.StructuredArguments;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,7 @@ public class CustomerService {
     public CreateCustomerResponseDto createCustomer(CreateCustomerRequestDto createCustomerRequestDto) {
         Customer entity = customerMapper.toEntity(createCustomerRequestDto);
         Customer savedCustomer = customerRepository.save(entity);
+        log.info("Customer created with", StructuredArguments.keyValue("id", savedCustomer.getId()));
         return customerMapper.toCreateCustomerDto(savedCustomer);
     }
 }

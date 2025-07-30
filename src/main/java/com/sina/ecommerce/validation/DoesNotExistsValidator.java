@@ -16,6 +16,6 @@ public class DoesNotExistsValidator implements ConstraintValidator<CustomerNotEx
 
     @Override
     public boolean isValid(Long id, ConstraintValidatorContext constraintValidatorContext) {
-        return customerRepository.findById(id).isEmpty();
+        return customerRepository.findByIdWithLock(id).isEmpty();
     }
 }

@@ -1,7 +1,6 @@
 package com.sina.ecommerce.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,7 +10,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Address extends AbstractEntity{
+public class Address extends AbstractEntity {
     private String country;
     private String city;
     private String street;

@@ -10,10 +10,12 @@ import java.lang.annotation.*;
  */
 @Documented
 @Constraint(validatedBy = UniqueUsernameValidator.class)
-@Target({ ElementType.FIELD })
+@Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CustomerNotExists {
     String message() default "Customer Not Exists";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }
