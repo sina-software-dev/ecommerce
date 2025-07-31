@@ -15,9 +15,13 @@ import java.util.Optional;
  * @author Sina Ramezani, 7/16/2025
  */
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Long>, JpaSpecificationExecutor<Customer> {
-    //@Lock(LockModeType.PESSIMISTIC_WRITE)
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
+
     Optional<Customer> findByUsername(String username);
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query(value = "SELECT * FROM CUSTOMER WHERE username = ?", nativeQuery = true)
+    Optional<Customer> findByUsernameWithLock(String username);
 
     @Query(value = "Select * from customer where id = ?", nativeQuery = true)
     @Lock(LockModeType.PESSIMISTIC_READ)

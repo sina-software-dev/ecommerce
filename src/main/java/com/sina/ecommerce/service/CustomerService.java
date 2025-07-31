@@ -8,6 +8,8 @@ import com.sina.ecommerce.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.logstash.logback.argument.StructuredArguments;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,5 +30,13 @@ public class CustomerService {
         Customer savedCustomer = customerRepository.save(entity);
         log.info("Customer created with", StructuredArguments.keyValue("id", savedCustomer.getId()));
         return customerMapper.toCreateCustomerDto(savedCustomer);
+    }
+
+    /*public PaginatedResponse<Customer> getCustomer(Pageable pageable) {
+        return PaginationUtils.buildResponse(customerRepository.findAll(pageable));
+    }*/
+
+    public Page<Customer> getCustomer(Pageable pageable) {
+        return customerRepository.findAll(pageable);
     }
 }

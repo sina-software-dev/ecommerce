@@ -3,18 +3,21 @@ package com.sina.ecommerce.controller;
 import com.sina.ecommerce.dto.CreateCustomerRequestDto;
 import com.sina.ecommerce.dto.CreateCustomerResponseDto;
 import com.sina.ecommerce.dto.GeneralResponse;
+import com.sina.ecommerce.dto.PaginatedResponse;
+import com.sina.ecommerce.model.Customer;
 import com.sina.ecommerce.service.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.logstash.logback.argument.StructuredArguments;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -38,6 +41,12 @@ public class CustomerController {
                 .buildAndExpand(savedCustomer.getId())
                 .toUri();
         return ResponseEntity.created(location).body(new GeneralResponse<>(true, savedCustomer));
+    }
+
+    @GetMapping("items")
+    public ResponseEntity<GeneralResponse<Page<Customer>>> getAllUsers(
+            @PageableDefault(sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable) {
+        return ResponseEntity.ok(new GeneralResponse<>(true,customerService.getCustomer(pageable)));
     }
 }
 
