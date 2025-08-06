@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: erp-system-dev
+  
+  # Development Database Configuration
+  datasource:
+    url: jdbc:h2:mem:erpdb_dev
+    driverClassName: org.h2.Driver
+    username: sa
+    password: 
+  
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+  
+  # Cache Configuration
+  cache:
+    type: simple
+
+# Server Configuration
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+# Application Configuration for Development
+app:
+  jwt:
+    secret: devSecretKey123456789012345678901234567890
+    expiration: 86400000 # 24 hours
+
+# Logging Configuration for Development
+logging:
+  level:
+    com.erp: DEBUG
+    org.springframework.security: INFO
+    org.hibernate.SQL: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"

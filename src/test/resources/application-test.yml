@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: erp-system-test
+  
+  # Test Database Configuration
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: 
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: false
+  
+  sql:
+    init:
+      mode: never
+  
+  # Disable cache for tests
+  cache:
+    type: simple
+
+# Application Configuration for Tests
+app:
+  jwt:
+    secret: testSecretKey123456789012345678901234567890
+    expiration: 86400000 # 24 hours
+
+# Logging Configuration for Tests
+logging:
+  level:
+    com.erp: WARN
+    org.springframework.security: WARN
+    org.hibernate.SQL: WARN
