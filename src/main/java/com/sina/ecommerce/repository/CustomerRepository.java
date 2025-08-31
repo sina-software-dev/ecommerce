@@ -20,10 +20,10 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     Optional<Customer> findByUsername(String username);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query(value = "SELECT * FROM CUSTOMER WHERE username = ?", nativeQuery = true)
+    @Query(value = "select * from customer where username = ?", nativeQuery = true)
     Optional<Customer> findByUsernameWithLock(String username);
 
-    @Query(value = "Select * from customer where id = ?", nativeQuery = true)
+    @Query(value = "select * from customer where id = ?", nativeQuery = true)
     @Lock(LockModeType.PESSIMISTIC_READ)
     Optional<Customer> findByIdWithLock(@NonNull Long id);
 }

@@ -33,6 +33,6 @@ public class GlobalExceptionHandler {
         }).collect(Collectors.toList());
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("errors", errors);
-        return ResponseEntity.badRequest().body(new GeneralResponse<Map<String, Object>>(false, "Validation failed", body));
+        return ResponseEntity.badRequest().body(new GeneralResponse<>(false, "Validation failed", body));
     }
 }

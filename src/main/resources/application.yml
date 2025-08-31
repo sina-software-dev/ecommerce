@@ -1,7 +1,7 @@
 server:
   servlet:
     context-path: /api/v1
-  port: 8080
+  port: 8181
   shutdown: graceful
 
 spring:
@@ -50,8 +50,7 @@ springdoc:
     path: /v3/api-docs
   swagger-ui:
     path: /swagger-ui.html
-
 logging:
   level:
     root: INFO
-    com.sina.ecommerce: DEBUG
+    com.sina.ecommerce: debug

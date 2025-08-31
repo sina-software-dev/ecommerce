@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 /**
  * @author Sina Ramezani, 7/19/2025
  */
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.WARN)
+@Mapper(componentModel = "spring")
 public interface CustomerMapper {
     Customer toEntity(CreateCustomerRequestDto createCustomerRequestDto);
 
