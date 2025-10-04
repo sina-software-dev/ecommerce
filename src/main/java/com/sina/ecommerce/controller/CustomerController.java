@@ -3,7 +3,6 @@ package com.sina.ecommerce.controller;
 import com.sina.ecommerce.dto.CreateCustomerRequestDto;
 import com.sina.ecommerce.dto.CreateCustomerResponseDto;
 import com.sina.ecommerce.dto.GeneralResponse;
-import com.sina.ecommerce.dto.PaginatedResponse;
 import com.sina.ecommerce.model.Customer;
 import com.sina.ecommerce.service.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,7 +32,7 @@ public class CustomerController {
     @PostMapping
     @Operation(summary = "Create a new customer", description = "Creates a new customer with username")
     public ResponseEntity<GeneralResponse<CreateCustomerResponseDto>> postCustomer(@Valid @RequestBody CreateCustomerRequestDto createCustomerRequestDto) {
-        log.info("Creating new customer", StructuredArguments.keyValue("username", createCustomerRequestDto.getUsername()));
+        log.info("Creating new customer with this username {}", StructuredArguments.keyValue("username", createCustomerRequestDto.getUsername()));
         CreateCustomerResponseDto savedCustomer = customerService.createCustomer(createCustomerRequestDto);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -47,6 +46,11 @@ public class CustomerController {
     public ResponseEntity<GeneralResponse<Page<Customer>>> getAllUsers(
             @PageableDefault(sort = "createdAt",direction = Sort.Direction.DESC) Pageable pageable) {
         return ResponseEntity.ok(new GeneralResponse<>(true,customerService.getCustomer(pageable)));
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<GeneralResponse<Customer>> getAllUsers(@PathVariable Long id) {
+        return ResponseEntity.ok(new GeneralResponse<>(true,customerService.findById(id)));
     }
 }
 

@@ -28,7 +28,7 @@ public class CustomerService {
     public CreateCustomerResponseDto createCustomer(CreateCustomerRequestDto createCustomerRequestDto) {
         Customer entity = customerMapper.toEntity(createCustomerRequestDto);
         Customer savedCustomer = customerRepository.save(entity);
-        log.info("Customer created with", StructuredArguments.keyValue("id", savedCustomer.getId()));
+        log.info("Customer created with id {}", savedCustomer.getId());
         return customerMapper.toCreateCustomerDto(savedCustomer);
     }
 
@@ -38,5 +38,9 @@ public class CustomerService {
 
     public Page<Customer> getCustomer(Pageable pageable) {
         return customerRepository.findAll(pageable);
+    }
+
+    public Customer findById(Long id) {
+        return customerRepository.findById(id).orElseThrow(() -> new RuntimeException("id not found"));
     }
 }
